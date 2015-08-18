@@ -2,6 +2,8 @@
 Data/*
 Gina/*
 
+#Markdown
+*.html
 
 #FROM GITIGNORE R TEMPLATE
 # History files
@@ -17,3 +19,4 @@ Gina/*
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
+.Rproj.user
