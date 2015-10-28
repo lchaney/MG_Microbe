@@ -15,4 +15,7 @@ Prior to loading, data was cleaned as follows:
 *this is essentially the tab 'Gina_man_deleteng' with no flowering removed*  
 
 ***
-begin
+Greenhouse experiment:
+4 treatments: Field Soil (3), Autoclave (4), Autoclave Inoculum (2), Autoclave Antibiotic (1)
+20 genotypes (maternal lines) with 6 replicates each
+X Flower colors/intensities: 
