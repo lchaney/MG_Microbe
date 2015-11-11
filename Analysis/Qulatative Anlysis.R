@@ -12,6 +12,18 @@ library(multcomp) #allows multiple comparison tests for lmer
 #clean data
 mgdat <- mgdat %>% mutate_each(funs(factor), Genotype, Treatment, Replicate)
 
+#create new RGR variables -- these ones are weird
+mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
+                       LeafSumRGRB = (LeafSum34 - LeafSum26)/8,
+                       LeafSumRGRC = (LeafSum34 - LeafSum14)/20,
+                       LeafNumRGRA = (LeafNum26 - LeafNum14)/12,
+                       LeafNumRGRB = (LeafNum34 - LeafNum26)/8,
+                       LeafNumRGRC = (LeafNum34 - LeafNum14)/20,
+                       HeightRGRA = (Height26 - Height14)/12,
+                       HeightRGRB = (Height34 - Height26)/8,
+                       HeightRGRC = (Height34 - Height14)/20
+                       )
+
 #explore data
 tbl_df(mgdat)
 glimpse(mgdat)
@@ -248,4 +260,81 @@ ggplot(data = mgdat, aes(x = Treatment, y = SumFlowers, fill = Color, color = Co
       rand(fit28)
     #no sig
       
-       
+#new RGR
+  #LeafSumRGRA -- RGR for sum of leaf lengths *Mid - Early*
+    fit29 <- lmer(LeafSumRGRA ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit29)
+      rand(fit29)
+      summary(glht(fit29, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafSumRGRA)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafSumRGRA)) + geom_boxplot()
+    #sig E
+    
+  #LeafSumRGRB -- RGR for sum of leaf lengths *Late - Mid*
+    fit30 <- lmer(LeafSumRGRB ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit30)
+      rand(fit30)
+      summary(glht(fit30, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafSumRGRB)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafSumRGRA)) + geom_boxplot()
+    #sig E, sig G
+  
+  #LeafSumRGRC -- RGR for sum of leaf lengths *Late - Early*
+    fit31 <- lmer(LeafSumRGRC ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit31)
+      rand(fit31)
+      summary(glht(fit31, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafSumRGRC)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafSumRGRC)) + geom_boxplot()
+    #sig E, sig G
+    
+  #LeafNumRGRA -- RGR for number of leaves *Mid - Early*
+    fit32 <- lmer(LeafNumRGRA ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit32)
+      rand(fit32)
+      summary(glht(fit29, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafNumRGRA)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafNumRGRA)) + geom_boxplot()
+    #sig E, sig G
+    
+  #LeafNumRGRB -- RGR for number of leaves *Late - Mid*
+    fit33 <- lmer(LeafNumRGRB ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit33)
+      rand(fit33)
+      summary(glht(fit33, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafNumRGRB)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafSumRGRA)) + geom_boxplot()
+    #sig E, sig G
+    
+  #LeafNumRGRC -- RGR for number of leaves *Late - Early*
+    fit34 <- lmer(LeafNumRGRC ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit34)
+      rand(fit34)
+      summary(glht(fit34, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), LeafNumRGRC)
+    ggplot(data = mgdat, aes(x = Treatment, y = LeafNumRGRC)) + geom_boxplot()
+    #sig E, sig G
+    
+  #HeightRGRA -- RGR for height *Mid - Early*
+    fit35 <- lmer(HeightRGRA ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit35)
+      rand(fit35)
+      summary(glht(fit35, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), HeightRGRA)
+    ggplot(data = mgdat, aes(x = Treatment, y = HeightRGRA)) + geom_boxplot()
+    #sig E, near sig GxE
+    
+  #HeightRGRB -- RGR for height *Late - Mid*
+    fit36 <- lmer(HeightRGRB ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit36)
+      rand(fit36)
+    #sig G
+    
+  #HeightRGRC -- RGR for height *Late - Early*
+    fit37 <- lmer(HeightRGRC ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit37)
+      rand(fit37)
+      summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+    mgdat %>% group_by(Treatment) %>% summarise_each(funs(mean), HeightRGRC)
+    ggplot(data = mgdat, aes(x = Treatment, y = HeightRGRC)) + geom_boxplot()
+    #sig E
