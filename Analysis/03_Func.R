@@ -28,7 +28,13 @@ ggplot(data = mgdat, aes(x = Treatment, y = SumFlowers, fill = Color, color = Co
   scale_fill_manual(values = c("pink", "thistle", "white")) +
   theme_bw()
 
+#are these traits phenotypically correlated
+source('~/GitHub/corrPlot_v2/corrPlot_v2.R')
 
+  corrPlot2(mgdat[,8:16])
+  corrPlot2(mgdat[,16:26])
+  corrPlot2(mgdat[,36:44])
+  
 
 #source to perform FUNCTION on data
   source('Analysis/03_Func_GxE.R')

@@ -2,7 +2,7 @@
 # Script created by Lindsay Chaney 2015 - lchaney@byu.edu
 # Script created in version R 3.2.1 
 # This script is used for the Chaney et al 2016 Morning glory microbe paper
-# This function examines trait differences by genotyp, treatment, and their interacitons
+# This function examines trait differences by genotype, treatment, and their interacitons
 #==============================================================================================#
 
 
