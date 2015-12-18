@@ -11,6 +11,7 @@ glimpse(mgdat)
 summary(mgdat)
 unique(mgdat$Genotype)
 
+#how many of each genotype are in each treatment
 with(mgdat, table(Genotype, Treatment))
 
 #flower color genotype by phenotype
