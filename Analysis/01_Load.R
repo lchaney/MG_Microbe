@@ -14,3 +14,5 @@
   library(lme4) #mixed model
   library(lmerTest) #test for significance
   library(multcomp) #allows multiple comparison tests for lmer
+  library(gridExtra) #multiple plot panels
+  
