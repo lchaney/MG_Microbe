@@ -4,6 +4,59 @@
 # This script is used to run Functions needed for the Chaney et al 2016 Morning glory microbe paper
 #==============================================================================================#
 
+#data exploration to determine what variables to focus on
+
+gxe_potgrid <- function(yvariable, ...){
+
+  geno <- ggplot(data = mgdat, aes(x = Genotype, y = yvariable)) +
+    geom_boxplot() + 
+    theme_bw()
+  
+  tret <- ggplot(data = mgdat, aes(x = Treatment, y = yvariable)) +
+    geom_boxplot() + 
+    theme_bw()
+  
+  gxt <- ggplot(data = mgdat, aes(x = Genotype, y = yvariable)) +
+    geom_boxplot() + 
+    theme_bw() +
+    facet_wrap( ~Treatment)
+  
+  grid.arrange(geno, tret, gxt, ncol = 1, heights = c(2, 3, 4))
+}
+  
+  
+geno <- ggplot(data = mgdat, aes(x = Genotype, y = DOFF)) +
+  geom_boxplot() + 
+  theme_bw()
+
+tret <- ggplot(data = mgdat, aes(x = Treatment, y = DOFF)) +
+  geom_boxplot() + 
+  theme_bw()
+
+gxt <- ggplot(data = mgdat, aes(x = Genotype, y = DOFF)) +
+  geom_boxplot() + 
+  theme_bw() +
+  facet_wrap( ~Treatment)
+
+doffplot <- arrangeGrob(geno, tret, gxt, ncol = 1, heights = c(2, 3, 4))
+ggsave("doff.png", doffplot)
+
+
+
+
+ggplot(data = mgdat, aes(x = Treatment, y = DOFF, fill = Color, color = Color)) + 
+  geom_boxplot() +
+  scale_color_manual(values = c("red", "purple", "black")) +
+  scale_fill_manual(values = c("pink", "thistle", "white")) +
+  theme_bw()
+
+ggplot(data = mgdat, aes(x = Color, y = DOFF, fill = Color, color = Color)) + 
+  geom_boxplot() +
+  scale_color_manual(values = c("red", "purple", "black")) +
+  scale_fill_manual(values = c("pink", "thistle", "white")) +
+  theme_bw()
+
+
 #explore data
 tbl_df(mgdat)
 glimpse(mgdat)
