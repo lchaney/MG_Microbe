@@ -6,43 +6,26 @@
 
 #data exploration to determine what variables to focus on
 
-gxe_potgrid <- function(yvariable, ...){
+gxe_potgrid <- function(i){
 
-  geno <- ggplot(data = mgdat, aes(x = Genotype, y = yvariable)) +
+  geno <- ggplot(data = mgdat, aes_string(x = "Genotype", y = i)) +
+    geom_boxplot() + 
+    theme_bw()
+
+  tret <- ggplot(data = mgdat, aes_string(x = "Treatment", y = i)) +
     geom_boxplot() + 
     theme_bw()
   
-  tret <- ggplot(data = mgdat, aes(x = Treatment, y = yvariable)) +
-    geom_boxplot() + 
-    theme_bw()
-  
-  gxt <- ggplot(data = mgdat, aes(x = Genotype, y = yvariable)) +
+  gxt <- ggplot(data = mgdat, aes_string(x = "Genotype", y = i)) +
     geom_boxplot() + 
     theme_bw() +
     facet_wrap( ~Treatment)
   
   grid.arrange(geno, tret, gxt, ncol = 1, heights = c(2, 3, 4))
 }
+
+lapply(list("DOFF", "SumFlowers"), gxe_potgrid)
   
-  
-geno <- ggplot(data = mgdat, aes(x = Genotype, y = DOFF)) +
-  geom_boxplot() + 
-  theme_bw()
-
-tret <- ggplot(data = mgdat, aes(x = Treatment, y = DOFF)) +
-  geom_boxplot() + 
-  theme_bw()
-
-gxt <- ggplot(data = mgdat, aes(x = Genotype, y = DOFF)) +
-  geom_boxplot() + 
-  theme_bw() +
-  facet_wrap( ~Treatment)
-
-doffplot <- arrangeGrob(geno, tret, gxt, ncol = 1, heights = c(2, 3, 4))
-ggsave("doff.png", doffplot)
-
-
-
 
 ggplot(data = mgdat, aes(x = Treatment, y = DOFF, fill = Color, color = Color)) + 
   geom_boxplot() +
