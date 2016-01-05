@@ -7,6 +7,9 @@
 #clean data
 mgdat <- mgdat %>% mutate_each(funs(factor), Genotype, Treatment, Replicate)
 
+#rename treatments
+levels(mgdat$Treatment) <- c("Antibiotic", "Inoculum", "Field", "Autoclave")
+
 #create new RGR variables -- these ones are weird
 mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
                           LeafSumRGRB = (LeafSum34 - LeafSum26)/8,
