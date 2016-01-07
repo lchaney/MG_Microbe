@@ -4,6 +4,8 @@ Gina/*
 
 #Markdown
 *.html
+MG_Microbe_cache/*
+MG_Microbe_files/*
 
 #FROM GITIGNORE R TEMPLATE
 # History files
