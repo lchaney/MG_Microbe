@@ -5,17 +5,64 @@ date: "August 17, 2015"
 output: html_document
 ---
 
-Prior to loading, data was cleaned as follows:  
+####Pre-Analysis Data Cleaning
+Prior to loading, data was cleaned as follows:
+
 * removed genotype 20 because it was not planted in all treatments  
 * removed plants that never flowered: 10-2-1   5-3-1   12-1-3  
-* deleted no germination, dead for any reason, wrong color in an inbred line  
-  + removed 53 that died  
-  + removed 82 that did not germinate  
-  + removed 6 that were not correct color for line  
+* deleted no germination, dead for any reason, wrong color in an inbred line
+    + removed 53 that died  
+    + removed 82 that did not germinate  
+    + removed 6 that were not correct color for line  
+
 *this is essentially the tab 'Gina_man_deleteng' with no flowering removed*  
 
 ***
+####Experimental details
 Greenhouse experiment:
-4 treatments: Field Soil (3), Autoclave (4), Autoclave Inoculum (2), Autoclave Antibiotic (1)
-20 genotypes (maternal lines) with 6 replicates each
-X Flower colors/intensities: 
+
+* 4 treatments: Field Soil (3), Autoclave (4), Autoclave Inoculum (2), Autoclave Antibiotic (1)
+* 20 genotypes (maternal lines) with 6 replicates each
+* 3 Flower colors: Pink, Purple and White
+
+***
+```{r run, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, fig.keep='none'}
+#source('Analysis/04_SM_do.R')
+source('Analysis/01_Load.R')
+source('Analysis/02_Clean.R')
+source('Analysis/03_Func.R')
+```
+
+##Data Exploration
+We have a lot of variables, but we don't want to test them all. Let us see if we
+can narrow down our focus.
+
+Here is a raw list of variables --
+```{r}
+names(mgdat)
+```
+
+Are these traits correlated?
+
+```{r corplots, echo=FALSE, cache=TRUE}
+  corrPlot2(mgdat[samplevars])
+  corrPlot2(mgdat[flowvars])
+  corrPlot2(mgdat[leafsumvars])
+  corrPlot2(mgdat[leafnumvars])
+  corrPlot2(mgdat[heightvars])
+```
+
+Do there appear to be patterns in the data?
+
+```{r boxplots, echo=FALSE, results='hide'}
+  lapply(flowvars, gxe_potgrid2)
+  lapply(leafsumvars, gxe_potgrid2)
+  lapply(leafnumvars, gxe_potgrid2)
+  lapply(heightvars, gxe_potgrid2)
+```
+
+Test for flower color?
+
+```{r colboxplots, echo=FALSE, results='hide'}
+  lapply(samplevars, colplot)
+```
