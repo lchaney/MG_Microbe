@@ -54,7 +54,7 @@ Are these traits correlated?
 
 Do there appear to be patterns in the data?
 
-```{r boxplots, echo=FALSE, results='hide'}
+```{r boxplots, echo=FALSE, results='hide', cache=TRUE}
   lapply(flowvars, gxe_potgrid2)
   lapply(leafsumvars, gxe_potgrid2)
   lapply(leafnumvars, gxe_potgrid2)
@@ -63,6 +63,9 @@ Do there appear to be patterns in the data?
 
 Test for flower color?
 
-```{r colboxplots, echo=FALSE, results='hide'}
+```{r colboxplots, echo=FALSE, results='hide', cache=TRUE}
   lapply(samplevars, colplot)
 ```
+
+From these, I am going to focus on the following variables: DOFF, SumFlowering 
+(proxy for fitness), 
