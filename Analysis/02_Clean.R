@@ -8,7 +8,7 @@
 mgdat <- mgdat %>% mutate_each(funs(factor), Genotype, Treatment, Replicate)
 
 #data entry mistake on LeafSum26 for plant 18-1-5, replace with NA
-mgdat2 <- mgdat %>% mutate(LeafSum26 = replace(LeafSum26, which(LeafSum26 == 72.50), NA))
+mgdat <- mgdat %>% mutate(LeafSum26 = replace(LeafSum26, which(LeafSum26 == 72.50), NA))
 
 #rename treatments
 levels(mgdat$Treatment) <- c("Antibiotic", "Inoculum", "Field", "Autoclave")
