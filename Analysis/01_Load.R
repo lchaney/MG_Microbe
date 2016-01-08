@@ -25,4 +25,4 @@
   library(lmerTest) #test for significance
   library(multcomp) #allows multiple comparison tests for lmer
   library(gridExtra) #multiple plot panels
-  
+  library(tidyr) #data organization
