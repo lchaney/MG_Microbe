@@ -20,7 +20,7 @@ heightvars <- c("Height14", "Height26", "Height34",
                 "HeightRGRA", "HeightRGRB", "HeightRGRC")
 
 
-samplevars <- c("DOFF", "SumFlowers", "LeafSum34", "LeafNum34", "Height34")  
+samplevars <- c("DOFF", "SumFlowers", "LeafSum34", "HeightRGRC")  
 
 
 #check for phenotypic correlations  
