@@ -27,10 +27,7 @@ Greenhouse experiment:
 
 ***
 ```{r run, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, fig.keep='none'}
-#source('Analysis/04_SM_do.R')
-source('Analysis/01_Load.R')
-source('Analysis/02_Clean.R')
-source('Analysis/03_Func.R')
+source('Analysis/04_Do.R')
 ```
 
 ##Data Exploration
@@ -44,7 +41,7 @@ names(mgdat)
 
 Are these traits correlated?
 
-```{r corplots, echo=FALSE, cache=TRUE}
+```{r corplots, echo=FALSE, warning=FALSE, cache=TRUE}
   corrPlot2(mgdat[samplevars])
   corrPlot2(mgdat[flowvars])
   corrPlot2(mgdat[leafsumvars])
@@ -54,7 +51,7 @@ Are these traits correlated?
 
 Do there appear to be patterns in the data?
 
-```{r boxplots, echo=FALSE, results='hide', cache=TRUE}
+```{r boxplots, echo=FALSE, results='hide', warning=FALSE, cache=TRUE}
   lapply(flowvars, gxe_potgrid2)
   lapply(leafsumvars, gxe_potgrid2)
   lapply(leafnumvars, gxe_potgrid2)
@@ -63,9 +60,51 @@ Do there appear to be patterns in the data?
 
 Test for flower color?
 
-```{r colboxplots, echo=FALSE, results='hide', cache=TRUE}
+```{r colboxplots, echo=FALSE, results='hide', warning=FALSE, cache=TRUE}
   lapply(samplevars, colplot)
 ```
 
 From these, I am going to focus on the following variables: DOFF, SumFlowering 
-(proxy for fitness), 
+(proxy for fitness), LeafSum34 (biomass at day 34), and HeightRGRC (height growth -- day 34-14/20)
+
+##Test for differences by G, E, and GxE
+
+Day of first flower:
+
+```{r, DOFF_GE, echo = TRUE}
+  anova(fit1)
+  rand(fit1)
+```
+
+Total number of flowers
+
+```{r, Sum_GE, echo = TRUE}
+   anova(fit4)
+   rand(fit4)
+   summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+```
+
+Biomass or Sum of Leaf Lengths *LATE*
+
+```{r, LeafSum34_GE, echo = TRUE}
+    fit7 <- lmer(LeafSum34 ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+      anova(fit7)
+        rand(fit7)
+        summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+```
+
+Growth
+
+```{r, HeightRGRC, echo = TRUE}
+      anova(fit37)
+         rand(fit37)
+         summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+```
+
+Summary of mean trait values and standard error of the mean
+
+```{r, traitmeans, echo = TRUE}
+trait_summary
+```
+
+
