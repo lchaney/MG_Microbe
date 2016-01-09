@@ -9,91 +9,47 @@
 #We will use relative fitness: RelFit <- (SumFlowers/(mean(SumFlowers)))
 #trait values will be standardized to have a mean of zero and a standard deviation of one
 
-#????Should I look at maternal line averages?
-
 #create new variables -- realtive fitness
 mgdat2 <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
-  mutate(RelFit = SumFlowers/mean(SumFlowers)) 
-
-  #%>%
-  #mutate_each(funs(scale), one_of(samplevars)) %>% as.data.frame()
-
-mgdatgeno <- mgdat2 %>% 
-  group_by(Genotype, Treatment) %>% 
-  summarise_each(funs(mean), -Treatment) %>% ungroup()
+  mutate(RelFit = SumFlowers/mean(SumFlowers)) %>%
+  mutate_each(funs(scale), one_of(samplevars)) %>% as.data.frame()
 
 ###Selection
 
 #Selection Differential, Total Selection, Direct and Indirect Selection (Univariate)
 
-  ts.doff <- lm(RelFit ~ scale(DOFF), data = mgdatgeno)
+  #DOFF
+  ts.doff <- lm(RelFit ~ DOFF, data = mgdat2)
 #    anova(ts.doff)
 #    summary(ts.doff)
-#      plot(ts.doff) #resids look good
-
-lapply(unique(mgdat$Treatment), function(t){
-  (lm(RelFit ~ scale(DOFF), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
-})  
-    
-  ts.lvsum <- lm(RelFit ~ scale(LeafSum34), data = mgdatgeno)
+  
+  #LeafSum34    
+  ts.lvsum <- lm(RelFit ~ LeafSum34, data = mgdat2)
 #    anova(ts.lvsum)
 #    summary(ts.lvsum)
-#      plot(ts.lvsum) #resids look good
 
-lapply(unique(mgdat$Treatment), function(t){
-    (lm(RelFit ~ scale(LeafSum34), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
-  })  
-      
-  ts.grw <- lm(RelFit ~ scale(HeightRGRC), data = mgdatgeno)
+  
+  #HeightRGRC    
+  ts.grw <- lm(RelFit ~ HeightRGRC, data = mgdat2)
 #    anova(ts.grw)
 #    summary(ts.grw)
-#      plot(ts.grw) #resids look good
 
-  lapply(unique(mgdat$Treatment), function(t){
-    (lm(RelFit ~ scale(HeightRGRC), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
-  })  
-  
-      
-  #not using mean data
-#     ts.doff2 <- lm(RelFit ~ scale(DOFF), data = mgdat2)
-#       anova(ts.doff2)
-#       summary(ts.doff2)
-#         plot(ts.doff2) #resids look good
-#         
-#     ts.lvsum2 <- lm(RelFit ~ scale(LeafSum34), data = mgdat2)
-#       anova(ts.lvsum2)
-#       summary(ts.lvsum2)
-#         plot(ts.lvsum2) #resids look good
-#         
-#     ts.grw2 <- lm(RelFit ~ scale(HeightRGRC), data = mgdat2)
-#       anova(ts.grw2)
-#       summary(ts.grw2)
-#         plot(ts.grw2) #resids look good
-      
-
-  
 #Selection Gradient; Direct Selection (mulitvariate analysis)
-
-    ds.mod <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC),
-               data = mgdatgeno)
-#    anova(ds.mod)
-#    summary(ds.mod)
-    
-#not genotype means
-#   ds.mod2 <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC),
-#                  data = mgdat2)
-#     anova(ds.mod2)
-#     summary(ds.mod2)
   
-  #and Quadratic selection gradients
-  dsquad.mod <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC) +
-                     (scale(DOFF):scale(LeafSum34)) + (scale(DOFF):scale(HeightRGRC)) +
-                     (scale(LeafSum34):scale(HeightRGRC)) + I(scale(DOFF)^2) +
-                     I(scale(LeafSum34)^2) + I(scale(HeightRGRC)^2),
-                 data = mgdatgeno)
+  #linear selection gradients
+  ds.mod <- lm(RelFit ~ DOFF + LeafSum34 + HeightRGRC,
+               data = mgdat2)
+  #    anova(ds.mod)
+  #    summary(ds.mod)
+  
+  #Quadratic selection gradients
+  dsquad.mod <- lm(RelFit ~ DOFF + LeafSum34 + HeightRGRC +
+                     DOFF:LeafSum34 + DOFF:HeightRGRC +
+                     LeafSum34:HeightRGRC + I(DOFF^2) +
+                     I(LeafSum34^2) + I(HeightRGRC^2),
+                 data = mgdat2)
 #    anova(dsquad.mod)
 #    summary(dsquad.mod) 
-  
   
   
 
@@ -101,41 +57,35 @@ lapply(unique(mgdat$Treatment), function(t){
 
 #selection differentials  
 #DOFF
-  asd.doff <- lm(RelFit ~ scale(DOFF) + (scale(DOFF):Treatment) + Treatment, data = mgdatgeno)
+  asd.doff <- lm(RelFit ~ DOFF + DOFF:Treatment + Treatment, data = mgdat2)
     anova(asd.doff)
+
+  ts.doff.treat <- lapply(unique(mgdat2$Treatment), function(t){
+      summary(lm(RelFit ~ DOFF, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+    })  
     
 #LeafSum34
-  asd.lsum <- lm(RelFit ~ scale(LeafSum34) + (scale(LeafSum34):Treatment) + Treatment, data = mgdatgeno)
+  asd.lsum <- lm(RelFit ~ LeafSum34 + LeafSum34:Treatment + Treatment, data = mgdat2)
 #    anova(asd.lsum)
-    
+  
+  ts.lvsum.treat <- lapply(unique(mgdat2$Treatment), function(t){
+    summary(lm(RelFit ~ LeafSum34, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+  })    
+      
 #HeightRGRC
-  asd.grw <- lm(RelFit ~ scale(HeightRGRC) + (scale(HeightRGRC):Treatment) + Treatment, data = mgdatgeno)
+  asd.grw <- lm(RelFit ~ HeightRGRC + HeightRGRC:Treatment + Treatment, data = mgdat2)
 #    anova(asd.grw)
 
-#selection differentials  NOT GENOTYPE MEANS
-  #DOFF
-  asd.doff2 <- lm(RelFit ~ scale(DOFF) + (scale(DOFF):Treatment) + Treatment, data = mgdat2)
-  #  anova(asd.doff2)
-  
-  #LeafSum34
-  asd.lsum2 <- lm(RelFit ~ scale(LeafSum34) + (scale(LeafSum34):Treatment) + Treatment, data = mgdat2)
-  #    anova(asd.lsum2)
-  
-  #HeightRGRC
-  asd.grw2 <- lm(RelFit ~ scale(HeightRGRC) + (scale(HeightRGRC):Treatment) + Treatment, data = mgdat2)
-  #    anova(asd.grw2)  
+  ts.grw.treat <- lapply(unique(mgdat2$Treatment), function(t){
+    summary(lm(RelFit ~ HeightRGRC, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+  })    
   
   
 #Selection gradients
 
-   asg <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC) +
-                     (scale(DOFF):Treatment) + (scale(LeafSum34):Treatment) +
-                     (scale(HeightRGRC):Treatment) + Treatment,
-                   data = mgdatgeno)
+   asg <- lm(RelFit ~ DOFF + LeafSum34 + HeightRGRC +
+                     DOFF:Treatment + LeafSum34:Treatment +
+                     HeightRGRC:Treatment + Treatment,
+                   data = mgdat2)
 #  anova(asg)
    
-   asg2 <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC) +
-               (scale(DOFF):Treatment) + (scale(LeafSum34):Treatment) +
-               (scale(HeightRGRC):Treatment) + Treatment,
-             data = mgdat2)
-   #  anova(asg2)
