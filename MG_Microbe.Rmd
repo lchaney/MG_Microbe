@@ -43,19 +43,20 @@ Are these traits correlated?
 
 ```{r corplots, echo=FALSE, warning=FALSE, cache=TRUE}
   corrPlot2(mgdat[samplevars])
-  corrPlot2(mgdat[flowvars])
-  corrPlot2(mgdat[leafsumvars])
-  corrPlot2(mgdat[leafnumvars])
-  corrPlot2(mgdat[heightvars])
+#  corrPlot2(mgdat[flowvars])
+#  corrPlot2(mgdat[leafsumvars])
+#  corrPlot2(mgdat[leafnumvars])
+#  corrPlot2(mgdat[heightvars])
 ```
 
 Do there appear to be patterns in the data?
 
 ```{r boxplots, echo=FALSE, results='hide', warning=FALSE, cache=TRUE}
-  lapply(flowvars, gxe_potgrid2)
-  lapply(leafsumvars, gxe_potgrid2)
-  lapply(leafnumvars, gxe_potgrid2)
-  lapply(heightvars, gxe_potgrid2)
+  lapply(samplevars, gxe_potgrid2)
+#  lapply(flowvars, gxe_potgrid2)
+#  lapply(leafsumvars, gxe_potgrid2)
+#  lapply(leafnumvars, gxe_potgrid2)
+#  lapply(heightvars, gxe_potgrid2)
 ```
 
 Test for flower color?
@@ -69,12 +70,16 @@ From these, I am going to focus on the following variables: DOFF, SumFlowering
 
 ##Test for differences by G, E, and GxE
 
+###DOFF
+
 Day of first flower:
 
 ```{r, DOFF_GE, echo = TRUE}
   anova(fit1)
   rand(fit1)
 ```
+
+###SumFlowers
 
 Total number of flowers
 
@@ -83,6 +88,8 @@ Total number of flowers
    rand(fit4)
    summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 ```
+
+###LeafSum34
 
 Biomass or Sum of Leaf Lengths *LATE*
 
@@ -93,13 +100,17 @@ Biomass or Sum of Leaf Lengths *LATE*
         summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 ```
 
+###HeightRGRC
+
 Growth
 
-```{r, HeightRGRC, echo = TRUE}
+```{r, HeightRGRC_GE, echo = TRUE}
       anova(fit37)
          rand(fit37)
          summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 ```
+
+####Trait Means
 
 Summary of mean trait values and standard error of the mean
 
@@ -108,3 +119,72 @@ trait_summary
 ```
 
 
+##Selection Differential; Total Selection; Direct and Indirect Selection (Univariate Analysis)
+
+*looking at y~x is the same as cor(x,y) if the varaviles have equal standard deviations and equal variances -- both give strenght of linear relationship, but cor is bounded by 1 and reg can tell change in y*
+
+* Relative fitness was used
+* Traits are standardized to mean of 0 variance of 1 (z-score)
+* Genotype line means reduces influence of environmental covariants
+
+###DOFF
+
+Day of first flower:
+
+```{r, DOFF_TS, echo = TRUE}
+    anova(ts.doff)
+    summary(ts.doff)
+```
+
+###LeafSum34
+
+Biomass at day 34
+
+```{r, LeafSum34_TS, echo = TRUE}
+    anova(ts.lvsum)
+    summary(ts.lvsum)
+```
+
+###HeightRGRC
+
+Growth
+
+```{r, HeightRGRC_TS, echo = TRUE}
+    anova(ts.grw)
+    summary(ts.grw)
+```
+
+
+##Selection Gradient; Direct Selection (mulitvariate analysis)
+
+Linear selection -- estimated in models containing only the linear terms. 
+
+```{r, ds, echo = TRUE}
+    anova(ds.mod)
+    summary(ds.mod)
+```
+
+Quadratic selection -- estimated in a full model that contained linear terms, quadratic terms, and cross-product terms of focal traits. Quadratic regression coefficients will need to be converted to selection gradients by doubling them and their respective standard errors.
+
+```{r, dsquad, echo = TRUE}
+    anova(dsquad.mod)
+    summary(dsquad.mod) 
+```
+
+##Differences in selection by treatment
+
+To test for differences in selection by treatment, an ANCOVA was performed. A significant interaction between trait and treatment indicate that the direction and/or intensity of selection differed.
+
+###Selection Differential - ANCOVA
+
+```{r, sd ancova, echo = TRUE}
+    anova(asd.doff)
+    anova(asd.grw)
+    anova(asd.lsum)
+```
+
+###Selection Gradient - ANCOVA
+
+```{r, sg ancova, echo = TRUE}
+    anova(asg)
+```
