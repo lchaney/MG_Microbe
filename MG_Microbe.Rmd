@@ -31,8 +31,7 @@ source('Analysis/04_Do.R')
 ```
 
 ##Data Exploration
-We have a lot of variables, but we don't want to test them all. Let us see if we
-can narrow down our focus.
+We have a lot of variables, but we don't want to test them all. Let us see if we can narrow down our focus.
 
 Here is a raw list of variables --
 ```{r}
@@ -89,10 +88,9 @@ Total number of flowers
 Biomass or Sum of Leaf Lengths *LATE*
 
 ```{r, LeafSum34_GE, echo = TRUE}
-    fit7 <- lmer(LeafSum34 ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
       anova(fit7)
-        rand(fit7)
-        summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+      rand(fit7)
+      summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 ```
 
 ###HeightRGRC
@@ -177,6 +175,15 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
     anova(asd.grw)
     anova(asd.lsum)
 ```
+
+What are the selection differentials in each treatment?
+Treatments are: (1) Antibiotic, (2) Inoculum, (3) Field, (4) Autoclave
+```{r, sd.treat}
+    ts.doff.treat
+    ts.grw.treat
+    ts.lvsum.treat
+```
+
 
 ###Selection Gradient - ANCOVA
 
