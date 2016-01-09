@@ -59,3 +59,26 @@
         separate(variable, c("var", "stat"), sep = "\\_") %>% #seperate varibable name and stat
         spread(var, value) #spread data by variable name along top
   
+
+    
+#Quick look at color significance
+#         
+#   cdoff <- lmer(DOFF ~ Treatment + Color + (1 | Color:Genotype) + 
+#                   (1 | Color:Genotype:Treatment), data = mgdat)
+#   anova(cdoff)
+#   rand(cdoff)
+#   
+#   csumf <- lmer(SumFlowers ~ Treatment + Color + (1 | Color:Genotype) + 
+#                   (1 | Color:Genotype:Treatment), data = mgdat)
+#   anova(csumf)
+#   rand(csumf)
+#   
+#   clsum <- lmer(LeafSum34 ~ Treatment + Color + (1 | Color:Genotype) + 
+#                   (1 | Color:Genotype:Treatment), data = mgdat)
+#   anova(clsum)
+#   rand(clsum)
+#   
+#   chrgr <- lmer(HeightRGRC ~ Treatment + Color + (1 | Color:Genotype) + 
+#                   (1 | Color:Genotype:Treatment), data = mgdat)
+#   anova(chrgr)
+#   rand(chrgr)
