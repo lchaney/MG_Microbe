@@ -15,9 +15,11 @@
   #run exploritory analysis
   source('Analysis/03_Func_explore.R')
 
-  #source to perform FUNCTION on data
+  #source to perform TREATMENT EFFECT ANLAYSIS on data
   source('Analysis/03_Func_GxE.R')
   
+  #source to perform SELECTION ANALYSIS on data
+  source('Analysis/03_Func_selection.R')
   
   
 #==============================================================================================#
