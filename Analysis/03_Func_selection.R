@@ -61,7 +61,7 @@ mgdat2 <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
     anova(asd.doff)
 
   ts.doff.treat <- lapply(unique(mgdat2$Treatment), function(t){
-      summary(lm(RelFit ~ DOFF, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+      summary(lm(RelFit ~ DOFF, data = mgdat2[ which(mgdat2$Treatment == t), ]))
     })  
     
 #LeafSum34
@@ -69,7 +69,7 @@ mgdat2 <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
 #    anova(asd.lsum)
   
   ts.lvsum.treat <- lapply(unique(mgdat2$Treatment), function(t){
-    summary(lm(RelFit ~ LeafSum34, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+    summary(lm(RelFit ~ LeafSum34, data = mgdat2[ which(mgdat2$Treatment == t), ]))
   })    
       
 #HeightRGRC
@@ -77,7 +77,7 @@ mgdat2 <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
 #    anova(asd.grw)
 
   ts.grw.treat <- lapply(unique(mgdat2$Treatment), function(t){
-    summary(lm(RelFit ~ HeightRGRC, data = mgdat2[ which(mgdat2$Treatment == t), ]))$coefficients[2]
+    summary(lm(RelFit ~ HeightRGRC, data = mgdat2[ which(mgdat2$Treatment == t), ]))
   })    
   
   
