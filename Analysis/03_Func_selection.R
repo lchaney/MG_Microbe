@@ -12,13 +12,13 @@
 #????Should I look at maternal line averages?
 
 #create new variables -- realtive fitness
-mgdat <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
+mgdat2 <- mgdat %>% select(Genotype, Treatment, one_of(samplevars)) %>%
   mutate(RelFit = SumFlowers/mean(SumFlowers)) 
 
   #%>%
   #mutate_each(funs(scale), one_of(samplevars)) %>% as.data.frame()
 
-mgdatgeno <- mgdat %>% 
+mgdatgeno <- mgdat2 %>% 
   group_by(Genotype, Treatment) %>% 
   summarise_each(funs(mean), -Treatment) %>% ungroup()
 
@@ -42,17 +42,17 @@ mgdatgeno <- mgdat %>%
 #      plot(ts.grw) #resids look good
     
   #not using mean data
-#     ts.doff2 <- lm(RelFit ~ scale(DOFF), data = mgdat)
+#     ts.doff2 <- lm(RelFit ~ scale(DOFF), data = mgdat2)
 #       anova(ts.doff2)
 #       summary(ts.doff2)
 #         plot(ts.doff2) #resids look good
 #         
-#     ts.lvsum2 <- lm(RelFit ~ scale(LeafSum34), data = mgdat)
+#     ts.lvsum2 <- lm(RelFit ~ scale(LeafSum34), data = mgdat2)
 #       anova(ts.lvsum2)
 #       summary(ts.lvsum2)
 #         plot(ts.lvsum2) #resids look good
 #         
-#     ts.grw2 <- lm(RelFit ~ scale(HeightRGRC), data = mgdat)
+#     ts.grw2 <- lm(RelFit ~ scale(HeightRGRC), data = mgdat2)
 #       anova(ts.grw2)
 #       summary(ts.grw2)
 #         plot(ts.grw2) #resids look good
@@ -68,7 +68,7 @@ mgdatgeno <- mgdat %>%
     
 #not genotype means
 #   ds.mod2 <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC),
-#                  data = mgdat)
+#                  data = mgdat2)
 #     anova(ds.mod2)
 #     summary(ds.mod2)
   
