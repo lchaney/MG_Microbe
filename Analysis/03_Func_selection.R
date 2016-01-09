@@ -31,16 +31,29 @@ mgdatgeno <- mgdat2 %>%
 #    summary(ts.doff)
 #      plot(ts.doff) #resids look good
 
+lapply(unique(mgdat$Treatment), function(t){
+  (lm(RelFit ~ scale(DOFF), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
+})  
+    
   ts.lvsum <- lm(RelFit ~ scale(LeafSum34), data = mgdatgeno)
 #    anova(ts.lvsum)
 #    summary(ts.lvsum)
 #      plot(ts.lvsum) #resids look good
-    
+
+lapply(unique(mgdat$Treatment), function(t){
+    (lm(RelFit ~ scale(LeafSum34), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
+  })  
+      
   ts.grw <- lm(RelFit ~ scale(HeightRGRC), data = mgdatgeno)
 #    anova(ts.grw)
 #    summary(ts.grw)
 #      plot(ts.grw) #resids look good
-    
+
+  lapply(unique(mgdat$Treatment), function(t){
+    (lm(RelFit ~ scale(HeightRGRC), data = mgdatgeno[ which(mgdatgeno$Treatment == t), ]))$coefficients[2]
+  })  
+  
+      
   #not using mean data
 #     ts.doff2 <- lm(RelFit ~ scale(DOFF), data = mgdat2)
 #       anova(ts.doff2)
@@ -99,6 +112,20 @@ mgdatgeno <- mgdat2 %>%
   asd.grw <- lm(RelFit ~ scale(HeightRGRC) + (scale(HeightRGRC):Treatment) + Treatment, data = mgdatgeno)
 #    anova(asd.grw)
 
+#selection differentials  NOT GENOTYPE MEANS
+  #DOFF
+  asd.doff2 <- lm(RelFit ~ scale(DOFF) + (scale(DOFF):Treatment) + Treatment, data = mgdat2)
+  #  anova(asd.doff2)
+  
+  #LeafSum34
+  asd.lsum2 <- lm(RelFit ~ scale(LeafSum34) + (scale(LeafSum34):Treatment) + Treatment, data = mgdat2)
+  #    anova(asd.lsum2)
+  
+  #HeightRGRC
+  asd.grw2 <- lm(RelFit ~ scale(HeightRGRC) + (scale(HeightRGRC):Treatment) + Treatment, data = mgdat2)
+  #    anova(asd.grw2)  
+  
+  
 #Selection gradients
 
    asg <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC) +
@@ -106,3 +133,9 @@ mgdatgeno <- mgdat2 %>%
                      (scale(HeightRGRC):Treatment) + Treatment,
                    data = mgdatgeno)
 #  anova(asg)
+   
+   asg2 <- lm(RelFit ~ scale(DOFF) + scale(LeafSum34) + scale(HeightRGRC) +
+               (scale(DOFF):Treatment) + (scale(LeafSum34):Treatment) +
+               (scale(HeightRGRC):Treatment) + Treatment,
+             data = mgdat2)
+   #  anova(asg2)
