@@ -59,11 +59,6 @@ Do there appear to be patterns in the data?
 #  lapply(heightvars, gxe_potgrid2)
 ```
 
-Test for flower color?
-
-```{r colboxplots, echo=FALSE, results='hide', warning=FALSE, cache=TRUE}
-  lapply(samplevars, colplot)
-```
 
 From these, I am going to focus on the following variables: DOFF, SumFlowering 
 (proxy for fitness), LeafSum34 (biomass at day 34), and HeightRGRC (height growth -- day 34-14/20)
