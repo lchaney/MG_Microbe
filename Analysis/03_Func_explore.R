@@ -21,7 +21,7 @@ heightvars <- c("Height14", "Height26", "Height34",
 
 
 samplevars <- c("DOFF", "SumFlowers", "LeafSum34", "HeightRGRC")  
-
+  #these are the variables I end up keeping
 
 #check for phenotypic correlations  
   source('~/GitHub/corrPlot_v2/corrPlot_v2.R')
@@ -33,24 +33,6 @@ samplevars <- c("DOFF", "SumFlowers", "LeafSum34", "HeightRGRC")
 #   corrPlot2(mgdat[samplevars])
 
 #check for patterns in data -- box plot by genotype, treatment and gxe
-
-gxe_potgrid <- function(i){
-  
-  geno <- ggplot(data = mgdat, aes_string(x = "Genotype", y = i)) +
-    geom_boxplot() + 
-    theme_bw()
-  
-  tret <- ggplot(data = mgdat, aes_string(x = "Treatment", y = i)) +
-    geom_boxplot() + 
-    theme_bw()
-  
-  gxt <- ggplot(data = mgdat, aes_string(x = "Genotype", y = i)) +
-    geom_boxplot() + 
-    theme_bw() +
-    facet_wrap( ~Treatment)
-  
-  grid.arrange(geno, tret, gxt, ncol = 1, heights = c(2, 3, 4))
-}
 
 gxe_potgrid2 <- function(i){
   
@@ -77,25 +59,12 @@ gxe_potgrid2 <- function(i){
 #grid.arrange(arrangeGrob(geno2, gxt2, nrow = 2, heights = c(2, 2)), tret2, ncol = 2, widths = c(3,1))
 
 
-#variables <- list("DOFF", "DOLF", "DurationFlowering", "SumFlowers", 
-#                   "LeafSum14", "LeafSum26", "LeafSum34", 
-#                   "LeafSumRGRA", "LeafSumRGRB", "LeafSumRGRC",
-#                   "LeafNum14", "LeafNum26", "LeafNum34", 
-#                   "LeafNumRGRA", "LeafNumRGRB", "LeafNumRGRC",
-#                   "Height14", "Height26", "Height34", 
-#                   "HeightRGRA", "HeightRGRB", "HeightRGRC")
-# 
-# lapply(flowvars, gxe_potgrid)
-# lapply(leafsumvars, gxe_potgrid)
-# lapply(leafnumvars, gxe_potgrid)
-# lapply(heightvars, gxe_potgrid)
-# 
 # lapply(flowvars, gxe_potgrid2)
 # lapply(leafsumvars, gxe_potgrid2)
 # lapply(leafnumvars, gxe_potgrid2)
 # lapply(heightvars, gxe_potgrid2)
-#   
-# 
+
+ 
 colplot <- function (i){
   
   ggplot(data = mgdat, aes_string(x = "Treatment", y = i, fill = "Color", color = "Color")) + 
