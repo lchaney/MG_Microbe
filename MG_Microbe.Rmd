@@ -31,35 +31,10 @@ source('Analysis/04_Do.R')
 ```
 
 ##Data Exploration
-We have a lot of variables, but we don't want to test them all. Let us see if we can narrow down our focus.
 
-Here is a raw list of variables --
-```{r}
-names(mgdat)
-```
+Full data exploration is not shown.
 
-Are these traits correlated?
-
-```{r corplots, echo=FALSE, warning=FALSE, cache=TRUE}
-  corrPlot2(mgdat[samplevars])
-#  corrPlot2(mgdat[flowvars])
-#  corrPlot2(mgdat[leafsumvars])
-#  corrPlot2(mgdat[leafnumvars])
-#  corrPlot2(mgdat[heightvars])
-```
-
-Do there appear to be patterns in the data?
-
-```{r boxplots, echo=FALSE, results='hide', warning=FALSE, cache=TRUE}
-  lapply(samplevars, gxe_potgrid2)
-#  lapply(flowvars, gxe_potgrid2)
-#  lapply(leafsumvars, gxe_potgrid2)
-#  lapply(leafnumvars, gxe_potgrid2)
-#  lapply(heightvars, gxe_potgrid2)
-```
-
-
-From these, I am going to focus on the following variables: DOFF, SumFlowering 
+Traits I am going to focus on the following variables: DOFF, SumFlowering 
 (proxy for fitness), LeafSum34 (biomass at day 34), and HeightRGRC (height growth -- day 34-14/20)
 
 ##Test for differences by G, E, and GxE
@@ -111,6 +86,12 @@ Summary of mean trait values and standard error of the mean
 trait_summary
 ```
 
+```{r, plottraitmeans, echo = TRUE}
+gebox
+gevio
+gedot
+gebar
+```         
 
 ##Selection Differential; Total Selection; Direct and Indirect Selection (Univariate Analysis)
 
