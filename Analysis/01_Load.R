@@ -10,12 +10,12 @@
 
   
 #install the following packages
-  #packagelist <- c("devtools", "survival", "ggplot2", "grid", "cowplot", 
-  #                 "gridExtra", "scales", "doBy", "tidyr", "dplyr", "rmarkdown")
+  packagelist <- c("dplyr", "ggplot2", "lme4", "lmerTest", "multcomp", 
+                   "gridExtra", "tidyr", "fields", "wesanderson")
   
-  #new.packages <- packagelist[!(packagelist %in% installed.packages()[,"Package"])]
+  new.packages <- packagelist[!(packagelist %in% installed.packages()[,"Package"])]
   
-  #if(length(new.packages)>0) {install.packages(new.packages, dependencies = TRUE)}
+  if(length(new.packages)>0) {install.packages(new.packages, dependencies = TRUE)}
   
   
 #load packages
@@ -26,3 +26,6 @@
   library(multcomp) #allows multiple comparison tests for lmer
   library(gridExtra) #multiple plot panels
   library(tidyr) #data organization
+  library(fields) #surface plot
+  library(wesanderson) #colors palletes for plots
+  
