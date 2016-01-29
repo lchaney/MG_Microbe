@@ -5,16 +5,16 @@
 #==============================================================================================#
 
 #clean data
-mgdat <- mgdat %>% mutate_each(funs(factor), Genotype, Treatment, Replicate)
+  mgdat <- mgdat %>% mutate_each(funs(factor), Genotype, Treatment, Replicate) #Change varibale to Factors
 
 #data entry mistake on LeafSum26 for plant 18-1-5, replace with NA
-mgdat <- mgdat %>% mutate(LeafSum26 = replace(LeafSum26, which(LeafSum26 == 72.50), NA))
+  mgdat <- mgdat %>% mutate(LeafSum26 = replace(LeafSum26, which(LeafSum26 == 72.50), NA))
 
 #rename treatments
-levels(mgdat$Treatment) <- c("Antibiotic", "Inoculum", "Field", "Autoclave")
+  levels(mgdat$Treatment) <- c("Antibiotic", "Inoculum", "Field", "Autoclave")
 
-#create new RGR variables -- the ones Laurie calculated are weird
-mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
+#create new RGR variables -- the ones orginally calculated are weird
+  mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
                           LeafSumRGRB = (LeafSum34 - LeafSum26)/8,
                           LeafSumRGRC = (LeafSum34 - LeafSum14)/20,
                           LeafNumRGRA = (LeafNum26 - LeafNum14)/12,
@@ -24,3 +24,13 @@ mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
                           HeightRGRB = (Height34 - Height26)/8,
                           HeightRGRC = (Height34 - Height14)/20
                           )
+#list of focal traits
+  samplevars <- c("DOFF", "LeafSum34", "HeightRGRC", "SumFlowers")
+  
+#Names of variables
+  var_names <- c(
+    `DOFF` = "Flowering Day",
+    `LeafSum34` = "Size",
+    `HeightRGRC` = "Growth",
+    `SumFlowers` = "Total Flowers"
+  )
