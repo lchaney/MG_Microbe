@@ -38,18 +38,3 @@ FSsurface <- wireframe(z ~ DOFF*LeafSum34, data = expand.dat,
                        type="on",
                        drape=TRUE
 )
-
-FScontour <- wireframe(z ~ DOFF*LeafSum34, data = expand.dat,
-                       scales=list(arrows=FALSE),
-                       zlab="",
-                       xlab=list("Flowering Day", rot=-55), 
-                       ylab=list("Size", rot=30),
-                       screen = list(z = -60, x = -60),
-                       type = "bottom",
-                       col.contour=1,
-                       panel.3d.wireframe="panel.3d.contour",
-                       par.settings = list(box.3d = list(col=c(1,NA,NA,NA,1,NA,NA,NA,NA))),
-                       #par.settings =  simpleTheme(alpha = 0.7)
-                       #par.box = list(col=NA), #removes box
-                       alpha.regions = 0
-)
