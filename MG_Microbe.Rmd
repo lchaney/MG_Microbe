@@ -43,7 +43,7 @@ Traits I am going to focus on the following variables: DOFF, SumFlowering
 
 Day of first flower:
 
-```{r, DOFF_GE, echo = TRUE}
+```{r, DOFF_GE, echo = FALSE}
   anova(fit1)
   rand(fit1)
 ```
@@ -52,7 +52,7 @@ Day of first flower:
 
 Total number of flowers
 
-```{r, Sum_GE, echo = TRUE}
+```{r, Sum_GE, echo = FALSE}
    anova(fit4)
    rand(fit4)
    summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
@@ -62,7 +62,7 @@ Total number of flowers
 
 Biomass or Sum of Leaf Lengths *LATE*
 
-```{r, LeafSum34_GE, echo = TRUE}
+```{r, LeafSum34_GE, echo = FALSE}
       anova(fit7)
       rand(fit7)
       summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
@@ -72,7 +72,7 @@ Biomass or Sum of Leaf Lengths *LATE*
 
 Growth
 
-```{r, HeightRGRC_GE, echo = TRUE}
+```{r, HeightRGRC_GE, echo = FALSE}
       anova(fit37)
          rand(fit37)
          summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
@@ -82,15 +82,15 @@ Growth
 
 Summary of mean trait values and standard error of the mean
 
-```{r, traitmeans, echo = TRUE}
+```{r, traitmeans, echo = FALSE}
 trait_summary
 ```
 
-```{r, plottraitmeans, echo = TRUE}
+```{r, plottraitmeans, echo = FALSE}
 gebox
-gevio
-gedot
-gebar
+#gevio
+#gedot
+#gebar
 ```         
 
 ##Selection Differential; Total Selection; Direct and Indirect Selection (Univariate Analysis)
@@ -105,7 +105,7 @@ gebar
 
 Day of first flower:
 
-```{r, DOFF_TS, echo = TRUE}
+```{r, DOFF_TS, echo = FALSE}
     anova(ts.doff)
     summary(ts.doff)
 ```
@@ -114,7 +114,7 @@ Day of first flower:
 
 Biomass at day 34
 
-```{r, LeafSum34_TS, echo = TRUE}
+```{r, LeafSum34_TS, echo = FALSE}
     anova(ts.lvsum)
     summary(ts.lvsum)
 ```
@@ -123,7 +123,7 @@ Biomass at day 34
 
 Growth
 
-```{r, HeightRGRC_TS, echo = TRUE}
+```{r, HeightRGRC_TS, echo = FALSE}
     anova(ts.grw)
     summary(ts.grw)
 ```
@@ -135,7 +135,7 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
 
 ###Selection Differential - ANCOVA
 
-```{r, sd ancova, echo = TRUE}
+```{r, sd ancova, echo = FALSE}
     anova(asd.doff)
     anova(asd.grw)
     anova(asd.lsum)
@@ -152,7 +152,7 @@ Treatments are: (1) Antibiotic, (2) Inoculum, (3) Field, (4) Autoclave
 
 Plot selection differentials for each trait and treatment
 
-```{r, sd.treatplot, echo = TRUE}
+```{r, sd.treatplot, echo = FALSE}
 grid.arrange(arrangeGrob(ts.doffplot, ts.lvsumplot, ts.grwplot, nrow = 3))
 ```
 
@@ -160,27 +160,27 @@ grid.arrange(arrangeGrob(ts.doffplot, ts.lvsumplot, ts.grwplot, nrow = 3))
 
 Linear selection -- estimated in models containing only the linear terms. 
 
-```{r, ds, echo = TRUE}
+```{r, ds, echo = FALSE}
     anova(ds.mod)
     summary(ds.mod)
 ```
 
 Quadratic selection -- estimated in a full model that contained linear terms, quadratic terms, and cross-product terms of focal traits. Quadratic regression coefficients will need to be converted to selection gradients by doubling them and their respective standard errors.
 
-```{r, dsquad, echo = TRUE}
+```{r, dsquad, echo = FALSE}
     anova(dsquad.mod)
     summary(dsquad.mod) 
 ```
 
 Is quadratic selection for Flowering day just curvey or is there a fitness maximum/minimum?
 
-```{r, doffqaud, echo = TRUE}
+```{r, doffqaud, echo = FALSE}
 doff.quad
 ```
 
 What does the joint selection of Flowering Day and Size look like?
 
-```{r, surface, echo = TRUE}
+```{r, surface, echo = FALSE}
   FSsurface
 ```
 
@@ -191,7 +191,7 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
 
 ###Selection Gradient - ANCOVA
 
-```{r, sg ancova, echo = TRUE}
+```{r, sg ancova, echo = FALSE}
     anova(asgl)
     anova(asgq)
 ```
@@ -199,9 +199,12 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
 
 Difference is quadratic selection of Flowering Time by treatment
 
-```{r, sg quad treat, echo = TRUE}
+```{r, sg quad treat, echo = FALSE}
   grid.arrange(arrangeGrob(doff.quad.Antibiotic, doff.quad.Inoculum, doff.quad.Field, doff.quad.Autoclave, nrow = 1))
 ```
 
 Difference in joint selection of Flowering Time and Growth by Treatment
 
+```{r,sg surface treat, echo = FALSE}
+    grid.arrange(arrangeGrob(FSsurface.antibiotic, FSsurface.inoculum, FSsurface.field, FSsurface.autoclave, nrow = 2))
+```
