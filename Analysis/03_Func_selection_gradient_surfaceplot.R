@@ -7,16 +7,11 @@
 
 
 #graph the surface plot for flowering day and size
-#library(fields)
+#set colors
+  colr <- brewer.pal(11, "Spectral")
+  colr <- colorRampPalette(colr, space="rgb")
 
-#surfFS <- Tps(cbind(mgdat2$DOFF, mgdat2$LeafSum34), mgdat2$RelFit)
-#surface(tFS, type="p", xlab="Flowering Day", ylab="Size", zlab="RelFit")
-#surface(tFS, type="c", xlab="Flowering Day", ylab="Size", add.legend=FALSE)
-
-
-library(lattice) #add these to script 01_Load
-library(RColorBrewer)
-
+#prepare data -- expand to extrapolate across the whole surface
 mg.loess = loess(RelFit ~ DOFF*LeafSum34, data = mgdat2, degree = 2, span = 0.25)
 
 expand.dat = expand.grid(list(DOFF = seq(from = range(mgdat2$DOFF)[1], 
@@ -28,12 +23,7 @@ expand.dat = expand.grid(list(DOFF = seq(from = range(mgdat2$DOFF)[1],
 z = predict(mg.loess, newdata = expand.dat)
 expand.dat$z = as.numeric(z)
 
-
-
-source("http://www.leg.ufpr.br/~walmes/ridiculas/ridiculas_functions.R")
-colr <- brewer.pal(11, "Spectral")
-colr <- colorRampPalette(colr, space="rgb")
-
+#surface plot
 FSsurface <- wireframe(z ~ DOFF*LeafSum34, data = expand.dat,
                        scales=list(arrows=FALSE),
                        zlab=list("Relative Fitness", rot=90),
