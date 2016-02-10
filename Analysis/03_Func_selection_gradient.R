@@ -33,6 +33,7 @@ asgl <- lm(RelFit ~ DOFF + LeafSum34 + HeightRGRC +
 #  anova(asgl)
 
 summary(asgl)   #just look at beta for DOFF
+
 asgl.treat <- lapply(unique(mgdat2$Treatment), function(t){
   summary(lm(RelFit ~ DOFF + LeafSum34 + HeightRGRC, data = mgdat2[ which(mgdat2$Treatment == t), ]))
 })    
