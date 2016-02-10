@@ -56,6 +56,7 @@ Total number of flowers
    anova(fit4)
    rand(fit4)
    summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+   cld(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
 ```
 
 ###LeafSum34
@@ -66,6 +67,7 @@ Biomass or Sum of Leaf Lengths *LATE*
       anova(fit7)
       rand(fit7)
       summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
+      cld(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
 ```
 
 ###HeightRGRC
@@ -76,7 +78,8 @@ Growth
       anova(fit37)
          rand(fit37)
          summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
-```
+         cld(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
+``` 
 
 ####Trait Means
 
@@ -164,7 +167,7 @@ Linear selection -- estimated in models containing only the linear terms.
     anova(ds.mod)
     summary(ds.mod)
 ```
-
+    
 Quadratic selection -- estimated in a full model that contained linear terms, quadratic terms, and cross-product terms of focal traits. Quadratic regression coefficients will need to be converted to selection gradients by doubling them and their respective standard errors.
 
 ```{r, dsquad, echo = FALSE}
@@ -196,11 +199,22 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
     anova(asgq)
 ```
 
+What are the betas for each of the treatments?
 
-Difference is quadratic selection of Flowering Time by treatment
+```{r, ds treat, echo = FALSE}
+  asgl.treat
+```
 
-```{r, sg quad treat, echo = FALSE}
-  grid.arrange(arrangeGrob(doff.quad.Antibiotic, doff.quad.Inoculum, doff.quad.Field, doff.quad.Autoclave, nrow = 1))
+Plot of different selection on flowering time for treatment
+
+```{r, doff treat, echo=FALSE}
+ts.doffplot
+```
+
+What are the gammas for each of the treatments?
+
+```{r, dsquad treat, echo=FALSE}
+    asgq.treat
 ```
 
 Difference in joint selection of Flowering Time and Growth by Treatment
