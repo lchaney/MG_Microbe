@@ -1,6 +1,7 @@
 #Folders to keep hidden
 Data/*
 Gina/*
+Output/*
 
 #Markdown
 *.html
