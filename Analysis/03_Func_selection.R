@@ -25,20 +25,17 @@ mgdat2 <- mgdat %>%
   attr(mgdat2$LeafSum34,"scaled:scale")<-NULL
   attr(mgdat2$HeightRGRC,"scaled:scale")<-NULL
   attr(mgdat2$SumFlowers,"scaled:scale")<-NULL
+
+#==============================================================================================#
   
-  #mgdat2 %>% mutate_each(funs(as.numeric), DOFF)
-  
-  #remove scale attributes from variabels
-  #lapply(samplevars, function(x1){
-  #  attr(x1, "scaled:center") <- NULL
-  #  attr(x1,"scaled:scale") <-NULL 
-  #})
-  
-###Selection
+###soure different Selection functions
 
   #source to perform Selection Differential FUNCTIONS on data
   source('Analysis/03_Func_selection_differential.R')
-  
+
+  #source to perform Selection Differential by treatment FUNCTIONS on data
+  source('Analysis/03_Func_selection_differential_treatment.R')
+    
   #source to perform Selection Differential Plot FUNCTIONS on data
   source('Analysis/03_Func_selection_differential_plot.R')
   
@@ -56,3 +53,5 @@ mgdat2 <- mgdat %>%
   
   #source to perform Selection Gradient surface plot by treatment FUNCTIONS on data
   source('Analysis/03_Func_selection_gradient_surfaceplot_treatment.R')
+  
+#==============================================================================================#
