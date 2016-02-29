@@ -7,23 +7,6 @@
 
 #differences in trait by genotype (maternal line), treatment, and interaction
 
-# mixedmod <- function(r){
-#   capture.output(mod <- lmer(substitute(j ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), list(j = as.name(r))), data = mgdat))
-# 
-#   fm <- formula(mod)
-#   am <- anova(mod)
-#   rm <- rand(mod)
-#   tm <- summary(glht(mod, linfct = mcp(Treatment = "Tukey")))
-#   
-#   print(fm)
-#   cat("\n")
-#   print(am)
-#   cat("\n") 
-#   
-#   }
-# 
-# lapply(samplevars, mixedmod)
-
   #DOFF -- Day of first flower / Phenology
     fit1 <- lmer(DOFF ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
 #       anova(fit1)
@@ -62,29 +45,8 @@
         separate(variable, c("var", "stat"), sep = "\\_") %>% #seperate varibable name and stat
         spread(var, value) #spread data by variable name along top
 
+#==============================================================================================#
     
-
 source('Analysis/03_Func_GxE_plot.R')
     
-        
-#Quick look at color significance
-#         
-#   cdoff <- lmer(DOFF ~ Treatment + Color + (1 | Color:Genotype) + 
-#                   (1 | Color:Genotype:Treatment), data = mgdat)
-#   anova(cdoff)
-#   rand(cdoff)
-#   
-#   csumf <- lmer(SumFlowers ~ Treatment + Color + (1 | Color:Genotype) + 
-#                   (1 | Color:Genotype:Treatment), data = mgdat)
-#   anova(csumf)
-#   rand(csumf)
-#   
-#   clsum <- lmer(LeafSum34 ~ Treatment + Color + (1 | Color:Genotype) + 
-#                   (1 | Color:Genotype:Treatment), data = mgdat)
-#   anova(clsum)
-#   rand(clsum)
-#   
-#   chrgr <- lmer(HeightRGRC ~ Treatment + Color + (1 | Color:Genotype) + 
-#                   (1 | Color:Genotype:Treatment), data = mgdat)
-#   anova(chrgr)
-#   rand(chrgr)
+#==============================================================================================#
