@@ -145,7 +145,7 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
 ```
 
 What are the selection differentials in each treatment?
-Treatments are: (1) Antibiotic, (2) Inoculum, (3) Field, (4) Autoclave
+Treatments are: (1) Autoclave, (2) Inoculum, (3) Antibiotic, (4) Field
 
 ```{r, sd.treat}
     ts.doff.treat
