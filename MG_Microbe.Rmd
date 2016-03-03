@@ -37,6 +37,8 @@ Full data exploration is not shown.
 Traits I am going to focus on the following variables: DOFF, SumFlowering 
 (proxy for fitness), LeafSum34 (biomass at day 34), and HeightRGRC (height growth -- day 34-14/20)
 
+Only going to focus on Autoclave and Inoculm treatments (Field and Autoclave as a supplement)
+
 ##Test for differences by G, E, and GxE
 
 ###DOFF
@@ -55,8 +57,6 @@ Total number of flowers
 ```{r, Sum_GE, echo = FALSE}
    anova(fit4)
    rand(fit4)
-   summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
-   cld(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
 ```
 
 ###LeafSum34
@@ -66,8 +66,6 @@ Biomass or Sum of Leaf Lengths *LATE*
 ```{r, LeafSum34_GE, echo = FALSE}
       anova(fit7)
       rand(fit7)
-      summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
-      cld(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
 ```
 
 ###HeightRGRC
@@ -77,8 +75,6 @@ Growth
 ```{r, HeightRGRC_GE, echo = FALSE}
       anova(fit37)
          rand(fit37)
-         summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
-         cld(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #Tukey groups
 ``` 
 
 ####Trait Means
@@ -145,7 +141,6 @@ To test for differences in selection by treatment, an ANCOVA was performed. A si
 ```
 
 What are the selection differentials in each treatment?
-Treatments are: (1) Autoclave, (2) Inoculum, (3) Antibiotic, (4) Field
 
 ```{r, sd.treat}
     ts.doff.treat
@@ -178,14 +173,9 @@ Quadratic selection -- estimated in a full model that contained linear terms, qu
 Is quadratic selection for Flowering day just curvey or is there a fitness maximum/minimum?
 
 ```{r, doffqaud, echo = FALSE}
-doff.quad
+  doff.quad
 ```
 
-What does the joint selection of Flowering Day and Size look like?
-
-```{r, surface, echo = FALSE}
-  FSsurface
-```
 
 
 ##Differences in Selection Gradients by treatment
@@ -208,7 +198,7 @@ What are the betas for each of the treatments?
 Plot of different selection on flowering time for treatment
 
 ```{r, doff treat, echo=FALSE}
-ts.doffplot
+  ts.doffplot
 ```
 
 What are the gammas for each of the treatments?
@@ -220,5 +210,5 @@ What are the gammas for each of the treatments?
 Difference in joint selection of Flowering Time and Growth by Treatment
 
 ```{r,sg surface treat, echo = FALSE}
-    grid.arrange(arrangeGrob(FSsurface.antibiotic, FSsurface.inoculum, FSsurface.field, FSsurface.autoclave, nrow = 2))
+    grid.arrange(arrangeGrob(FSsurface.inoculum, FSsurface.autoclave, nrow = 2))
 ```
