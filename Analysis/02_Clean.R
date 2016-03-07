@@ -11,7 +11,8 @@
   mgdat <- mgdat %>% mutate(LeafSum26 = replace(LeafSum26, which(LeafSum26 == 72.50), NA))
 
 #Potential data enty error for SumFlowers (208) for plant 22-2-5 was investigated, but seems legit
-  mgdat <- mgdat %>% filter(Plant != "22-2-5")
+#  mgdat <- mgdat %>% filter(Plant != "22-2-5")
+  #this point is not driving significance or changing results
   
 #create new RGR variables -- the ones orginally calculated are weird
   mgdat <- mgdat %>% mutate(LeafSumRGRA = (LeafSum26 - LeafSum14)/12,
@@ -36,12 +37,12 @@
   )
   
 #rename treatments
-  levels(mgdat$Treatment) <- c("Antibiotic", "Inoculum", "Field", "Autoclave")
+  levels(mgdat$Treatment) <- c("Autoclave Antibiotic", "Autoclave Inoculum", "Field", "Autoclave")
   
 #Subset data to just include autoclave and inoculum
 mgdat_t_all <- mgdat #save a copy of the full data set for future
   
-mgdat <- mgdat %>% filter(Treatment == "Autoclave" | Treatment == "Inoculum")
+mgdat <- mgdat %>% filter(Treatment == "Autoclave" | Treatment == "Autoclave Inoculum")
 
 #And one subset for Field vs Autoclave
 mgdat_fa <- mgdat_t_all %>% filter(Treatment == "Field" | Treatment == "Autoclave")

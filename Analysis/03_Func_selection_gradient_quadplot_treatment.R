@@ -8,7 +8,7 @@
 
 #is this true stabilizing/disruptive selection with an intermediate optimum for fitness  
 #Inoculum
-mgdat2i <- mgdat2[ which(mgdat2$Treatment == "Inoculum"), ]
+mgdat2i <- mgdat2[ which(mgdat2$Treatment == "Autoclave Inoculum"), ]
 
   fiti <- lm(RelFit ~ as.numeric(DOFF) + I(as.numeric(DOFF^2)), data = mgdat2i)
   prdi <- data.frame(DOFF = seq(from = range(mgdat2i$DOFF)[1], to = range(mgdat2i$DOFF)[2], length.out = 100))
