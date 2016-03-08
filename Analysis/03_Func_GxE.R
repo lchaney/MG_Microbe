@@ -12,14 +12,7 @@
 #       anova(fit1)
 #       rand(fit1)
 
-     qqnorm(residuals(fit1))
-     qqline(residuals(fit1))
-      plot(resid(fit1) ~ fitted(fit1),main="residual plot")
-      abline(h=0)
-      qqnorm(resid(fit1), main="Q-Q plot for residuals")
-      qqnorm(ranef(fit1)$Genotype$"(Intercept)", main="Q-Q plot for the random effect" )
-      qqnorm(ranef(fit1)$`Genotype:Treatment`$"(Intercept)", main="Q-Q plot for the random effect" )
-          
+    
   #SumFlowers -- Total Number of Flowers
     fit4 <- lmer(SumFlowers ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
 #       anova(fit4)
@@ -27,13 +20,7 @@
 #       summary(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 #         cld(glht(fit4, linfct = mcp(Treatment = "Tukey"))) #letters
 
-    plot(resid(fit4) ~ fitted(fit4),main="residual plot")
-    abline(h=0)
-    qqnorm(resid(fit4), main="Q-Q plot for residuals")
-    qqnorm(ranef(fit4)$Genotype$"(Intercept)", main="Q-Q plot for the random effect" )
-    qqnorm(ranef(fit4)$`Genotype:Treatment`$"(Intercept)", main="Q-Q plot for the random effect" )
-    
-    
+ 
   #LeafSum34 -- Sum of Leaf Lengths *LATE*
     fit7 <- lmer(LeafSum34 ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
 #       anova(fit7)
@@ -41,12 +28,6 @@
 #       summary(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 #         cld(glht(fit7, linfct = mcp(Treatment = "Tukey"))) #letters
  
-    plot(resid(fit7) ~ fitted(fit7),main="residual plot")
-    abline(h=0)
-    qqnorm(resid(fit7), main="Q-Q plot for residuals")
-    qqnorm(ranef(fit7)$Genotype$"(Intercept)", main="Q-Q plot for the random effect" )
-    qqnorm(ranef(fit7)$`Genotype:Treatment`$"(Intercept)", main="Q-Q plot for the random effect" )
-    
        
   #HeightRGRC -- RGR for height *Late - Early*
     fit37 <- lmer(HeightRGRC ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
@@ -55,12 +36,6 @@
 #       summary(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #post hoc Tukey's with MultComp
 #         cld(glht(fit37, linfct = mcp(Treatment = "Tukey"))) #letters
 
-    plot(resid(fit37) ~ fitted(fit37),main="residual plot")
-    abline(h=0)
-    qqnorm(resid(fit37), main="Q-Q plot for residuals")
-    qqnorm(ranef(fit37)$Genotype$"(Intercept)", main="Q-Q plot for the random effect" )
-    qqnorm(ranef(fit37)$`Genotype:Treatment`$"(Intercept)", main="Q-Q plot for the random effect" )
-    
     
 #summarrize each trait value in each treatment
       
