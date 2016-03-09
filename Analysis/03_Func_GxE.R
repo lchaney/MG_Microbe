@@ -8,7 +8,7 @@
 #differences in trait by genotype (maternal line), treatment, and interaction
 
   #DOFF -- Day of first flower / Phenology
-    fit1 <- lmer(DOFF ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
+    fit1 <- lmer(I(DOFF^2) ~ Treatment + (1 | Genotype) + (1 | Genotype:Treatment), data = mgdat)
 #       anova(fit1)
 #       rand(fit1)
 
