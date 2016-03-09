@@ -10,7 +10,7 @@
 #selection differentials - ANCOVA  
 #DOFF
 asd.doff <- lm(RelFit ~ DOFF + DOFF:Treatment + Treatment, data = mgdat2)
-anova(asd.doff)
+#   anova(asd.doff)
 
 ts.doff.treat <- lapply(unique(mgdat2$Treatment), function(t){
   summary(lm(RelFit ~ DOFF, data = mgdat2[ which(mgdat2$Treatment == t), ]))
