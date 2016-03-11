@@ -25,6 +25,11 @@
                           HeightRGRB = (Height34 - Height26)/8,
                           HeightRGRC = (Height34 - Height14)/20
                           )
+
+#switch flowering dates to day numbers after planting -- planted day Day1= 4/24/12, 
+  #First day of flowering= 6/30/12 (to 10/17/12, 80 days of flowering data); 147 days in experiment  
+  mgdat <- mgdat %>% mutate(DOFF = DOFF + 67, DOLF = DOLF + 67)
+    
 #list of focal traits
   samplevars <- c("DOFF", "LeafSum34", "HeightRGRC", "SumFlowers")
   
