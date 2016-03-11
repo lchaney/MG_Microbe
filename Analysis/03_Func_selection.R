@@ -41,9 +41,6 @@ mgdat2 <- mgdat %>%
   
   #source to perform Selection Gradient FUNCTIONS on data
   source('Analysis/03_Func_selection_gradient.R')
-  
-  #source to perform Selection Gradient surface plot FUNCTIONS on data
-  source('Analysis/03_Func_selection_gradient_surfaceplot.R')
 
   #source to perform Selection Gradient quadratic selection plot FUNCTIONS on data
   source('Analysis/03_Func_selection_gradient_quadplot.R')
