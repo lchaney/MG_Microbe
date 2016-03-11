@@ -31,6 +31,3 @@
   library(wesanderson) #colors palletes for plots
   library(lattice) #used for surface plots
   library(RColorBrewer) #used for colors of surface plot
-  
-#source from html
-  source("http://www.leg.ufpr.br/~walmes/ridiculas/ridiculas_functions.R") #used to add contours to surface plot
