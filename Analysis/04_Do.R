@@ -34,6 +34,9 @@ ggsave("Output/Flower_Selection_Treatment.png", ts.doffplot)
 #Quadratic plot for Flowering
 ggsave("Output/Flower_Selection_Quadratic.png", doff.quad)
 
+#Quadratic plot by treatment for flowering
+ggsave("Output/Flower_Selection_Quadratic_Treatment.png", quad.treatment)
+
 #Surface plot for Flowering and Size
 #ggsave("Output/FS_surface", FSsurface)
 
