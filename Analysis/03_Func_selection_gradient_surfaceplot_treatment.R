@@ -5,64 +5,19 @@
 # This function examines selection gradients surface plots by treatment
 #==============================================================================================#
 
+pal <- wes_palette("Zissou", 100, type = "continuous") #set color pallete
 
 #inoculum
-mg.loessi = loess(RelFit ~ DOFF*HeightRGRC, data = mgdat2i, degree = 2, span = 0.25)
+xFGi <- cbind(mgdat2i$HeightRGRC, mgdat2i$DOFF)
+outFGi <- Tps(xFGi, mgdat2i$RelFit)
 
-expand.dati = expand.grid(list(DOFF = seq(from = range(mgdat2i$DOFF)[1], 
-                                          to = range(mgdat2i$DOFF)[2], length.out = 100), 
-                               HeightRGRC = seq(from = range(mgdat2i$HeightRGRC)[1], 
-                                                to = range(mgdat2i$HeightRGRC)[2], length.out = 100)
-))
-
-z = predict(mg.loessi, newdata = expand.dati)
-expand.dati$z = as.numeric(z)
-
-#surface plot
-FSsurface.inoculum <- wireframe(z ~ DOFF*HeightRGRC, data = expand.dati,
-                                  scales=list(arrows=TRUE),
-                                  zlab=list("Relative Fitness", rot=95),
-                                  xlab=list("Flowering Day"), 
-                                  ylab=list("Growth"),
-                                  colorkey = TRUE,
-                                  #screen = list(z = -120, x = -80),
-                                  col.regions = colr(100), 
-                                  col="gray50", 
-                                  col.contour=1,
-                                  panel.3d.wireframe="panel.3d.contour", 
-                                  type="on",
-                                  drape=TRUE
-)
+FG.surface.In <- surface(outFGi, type="p", xlab="Growth", ylab="Flowering Day", zlab="Fitness", add.legend=FALSE, col= pal, border = NA)
+FG.countour.In <- surface(outFGi, type="C", xlab="Growth", ylab="Flowering Day", add.legend = TRUE, col = pal)
 
 
 #autoclave
-mg.loessac = loess(RelFit ~ DOFF*HeightRGRC, data = mgdat2ac, degree = 2, span = 0.25)
+xFGac <- cbind(mgdat2ac$HeightRGRC, mgdat2ac$DOFF)
+outFGac <- Tps(xFGac, mgdat2ac$RelFit)
 
-expand.datac = expand.grid(list(DOFF = seq(from = range(mgdat2ac$DOFF)[1], 
-                                          to = range(mgdat2ac$DOFF)[2], length.out = 100), 
-                               HeightRGRC = seq(from = range(mgdat2ac$HeightRGRC)[1], 
-                                                to = range(mgdat2ac$HeightRGRC)[2], length.out = 100)
-))
-
-z = predict(mg.loessac, newdata = expand.datac)
-expand.datac$z = as.numeric(z)
-
-#surface plot
-FSsurface.autoclave <- wireframe(z ~ DOFF*HeightRGRC, data = expand.datac,
-                             scales=list(arrows=TRUE),
-                             zlab=list("Relative Fitness", rot=95),
-                             xlab=list("Flowering Day"), 
-                             ylab=list("Growth"),
-                             colorkey = TRUE,
-                             #screen = list(z = -120, x = -80),
-                             col.regions = colr(100), 
-                             col="gray50", 
-                             col.contour=1,
-                             panel.3d.wireframe="panel.3d.contour", 
-                             type="on",
-                             drape=TRUE
-)
-
-
-
-#grid.arrange(arrangeGrob(FSsurface.inoculum, FSsurface.autoclave, nrow = 1))
+FG.surface.Au <- surface(outFGac, type="p", xlab="Growth", ylab="Flowering Day", zlab="RelFit", add.legend = FALSE, col= pal, border = NA)
+FG.countour.Au <- surface(outFGac, type="C", xlab="Growth", ylab="Flowering Day", zlab="RelFit", add.legend = TRUE, col = pal)
