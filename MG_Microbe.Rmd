@@ -210,5 +210,18 @@ What are the gammas for each of the treatments?
 Difference in joint selection of Flowering Time and Growth by Treatment
 
 ```{r,sg surface treat, echo = FALSE}
-    grid.arrange(arrangeGrob(FSsurface.inoculum, FSsurface.autoclave, nrow = 2))
+  par(mfrow = c(2, 2))
+  #Innoculum
+  #surface plot
+  FG.surface.In <- surface(outFGi, type="p", xlab="Growth", ylab="Flowering Day", zlab="Fitness", add.legend=FALSE, col= pal, border = NA)
+  #contour plot
+  FG.contour.In <- surface(outFGi, type="C", xlab="Growth", ylab="Flowering Day", add.legend = TRUE, col = pal)
+  points(xFGi, pch = 2, col = "gray20", cex = .8)
+  #Autoclave
+  #surface plot
+  FG.surface.Au <- surface(outFGac, type="p", xlab="Growth", ylab="Flowering Day", zlab="RelFit", add.legend = FALSE, col= pal, border = NA)
+  #contour plot
+  FG.contour.Au <- surface(outFGac, type="C", xlab="Growth", ylab="Flowering Day", zlab="RelFit", add.legend = TRUE, col = pal)
+  points(xFGac, pch = 2, col = "gray20", cex = .8)
+    par(mfrow = c(1, 1))
 ```
