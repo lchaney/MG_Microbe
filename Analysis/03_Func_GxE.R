@@ -43,7 +43,7 @@
         
     trait_summary <- mgdat %>% #data input
         group_by(Treatment) %>% #group data by treatment
-        select(one_of(samplevars)) %>% #specify what variables to look at
+        dplyr::select(one_of(samplevars)) %>% #specify what variables to look at (dplyr's select() will get masked by the MASS package so need to specify package) )
         summarise_each(funs(mean, std)) %>% #what functions to summarise by
         gather(variable, value, -Treatment) %>% #do not gather by treatment
         separate(variable, c("var", "stat"), sep = "\\_") %>% #seperate varibable name and stat
