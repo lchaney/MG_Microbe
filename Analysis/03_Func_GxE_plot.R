@@ -11,13 +11,13 @@
 #melt data into 3 columns
 dat.m <- mgdat %>% 
   group_by(Treatment) %>% 
-  select(one_of(samplevars)) %>% 
+  dplyr::select(one_of(samplevars)) %>% 
   gather(variable, value, -Treatment)
 
 #melt data with trait Std errors by treatment and variable
 dat.m2 <- mgdat %>% 
   group_by(Treatment) %>% 
-  select(one_of(samplevars)) %>% 
+  dplyr::select(one_of(samplevars)) %>% 
   gather(variable, value, -Treatment) %>%
   group_by(Treatment, variable) %>%
   mutate(upper = mean(value) + std(value), # upper limit for error bar

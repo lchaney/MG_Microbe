@@ -11,7 +11,7 @@
 
 #create new variables -- realtive fitness
 mgdat2 <- mgdat %>% 
-  select(Genotype, Treatment, one_of(samplevars)) %>%
+  dplyr::select(Genotype, Treatment, one_of(samplevars)) %>%
   mutate(RelFit = SumFlowers/mean(SumFlowers)) %>%
   mutate_each(funs(scale), one_of(samplevars))
 
