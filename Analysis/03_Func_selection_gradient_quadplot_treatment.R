@@ -22,7 +22,7 @@ doff.quad.Inoculum <- ggplot(data = prdi, aes(x = DOFF, y = fit)) +
   theme_bw() +
   geom_line() +
   geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest")[2], stat = "identity") +
-  geom_point(data = mgdat2i, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest")[2]) + 
+  geom_point(data = mgdat2i, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest1")[2]) + 
   scale_x_continuous(limits = c(-3.5, 2.5)) +
   scale_y_continuous(limits = c(0, 3.5)) +
   labs(title = "Autoclave Inoculum", x = "Flowering Time", y = "Relative Fitness")
@@ -42,7 +42,7 @@ doff.quad.Autoclave <- ggplot(data = prdac, aes(x = DOFF, y = fit)) +
   theme_bw() +
   geom_line() +
   geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest")[4], stat = "identity") +
-  geom_point(data = mgdat2ac, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest")[4]) + 
+  geom_point(data = mgdat2ac, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest1")[4]) + 
   scale_x_continuous(limits = c(-3.5, 2.5)) +
   scale_y_continuous(limits = c(0, 3.5)) +
   labs(title = "Autoclave", x = "Flowering Time", y = "Relative Fitness")

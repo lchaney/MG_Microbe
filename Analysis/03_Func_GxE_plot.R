@@ -34,7 +34,7 @@ gebox <- ggplot(data = dat.m, #use melted data
               nrow = 1, scales = "free", #one row for facet wrap
               labeller = as_labeller(var_names), #label names
               switch = "x") + #facet label on bottom
-  scale_fill_manual(values = wes_palette("GrandBudapest")) + #color pallete
+  scale_fill_manual(values = wes_palette("GrandBudapest1")) + #color pallete
   labs(x = NULL,  y = NULL) + #no x or y labels
   theme(axis.ticks = element_blank(), #removes x tick labels
         axis.text.x = element_blank(), #removes x tick labels
@@ -47,7 +47,7 @@ gevio <- ggplot(dat.m, #use melted data
                 aes(x = variable, y = value, fill = Treatment)) + #variables
   geom_violin(adjust = .6) + #violin plot, adjusts makes it more shapely
   theme_minimal() + #minimal theme
-  scale_fill_manual(values = wes_palette("GrandBudapest")) + #color pallete
+  scale_fill_manual(values = wes_palette("GrandBudapest1")) + #color pallete
   stat_summary(fun.y = mean, #add mean point to the plot
                geom = "point", 
                position = position_dodge(width = .9), #seperate by treatment
@@ -81,7 +81,7 @@ gedot <- ggplot(dat.m,
                                               dodge.width = .5),
               size = 1, 
               alpha = .85) + #plot individual points jittered
-  scale_color_manual(values = wes_palette("GrandBudapest")) + #colors
+  scale_color_manual(values = wes_palette("GrandBudapest1")) + #colors
   theme_minimal() + #minimal theme    
   labs(x = NULL, y = NULL) + #no x or y label
   facet_wrap( ~ variable, #facet wrap
@@ -105,7 +105,7 @@ gebar <- ggplot(dat.m2,
   geom_errorbar(aes(ymin = lower, ymax = upper),
                 width = .1,                    # Width of the error bars
                 position = position_dodge(.9)) +
-  scale_fill_manual(values = wes_palette("GrandBudapest")) + #colors
+  scale_fill_manual(values = wes_palette("GrandBudapest1")) + #colors
   theme_minimal() + #minimal theme    
   labs(x = NULL, y = NULL) + #no x or y label
   facet_wrap( ~ variable, #facet wrap

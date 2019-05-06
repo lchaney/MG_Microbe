@@ -10,7 +10,7 @@ ts.doffplot <- ggplot(data = mgdat2,
                       aes(x = DOFF, y = RelFit, color = Treatment)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  scale_color_manual(values = wes_palette("GrandBudapest")) +
+  scale_color_manual(values = wes_palette("GrandBudapest1")) +
   facet_wrap( ~ Treatment, nrow = 1) +
   labs(x = "Flowering Time (scaled) ", y = "Relative Fitness") +
   theme_minimal() +
@@ -20,7 +20,7 @@ ts.lvsumplot <- ggplot(data = mgdat2,
                        aes(x = LeafSum34, y = RelFit, color = Treatment)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  scale_color_manual(values = wes_palette("GrandBudapest")) +
+  scale_color_manual(values = wes_palette("GrandBudapest1")) +
   facet_wrap( ~ Treatment, nrow = 1) +
   labs(x = "Size (scaled) ", y = "Relative Fitness") +
   theme_minimal() +
@@ -30,7 +30,7 @@ ts.grwplot <- ggplot(data = mgdat2,
                      aes(x = HeightRGRC, y = RelFit, color = Treatment)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  scale_color_manual(values = wes_palette("GrandBudapest")) +
+  scale_color_manual(values = wes_palette("GrandBudapest1")) +
   facet_wrap( ~ Treatment, nrow = 1) +
   labs(x = "Growth (scaled) ", y = "Relative Fitness") +
   theme_minimal() +
