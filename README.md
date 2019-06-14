@@ -1,16 +1,27 @@
-# Altering the microbial soil community changes the patterns of selection on plant growth and fitness related traits
+# The soil microbial community alters patterns of selection on flowering time and fitness related traits in *Ipomoea purpurea*
 
-[Lindsay Chaney](http://www.lindsaychaney.com), and [Gina Baucom](http://sites.lsa.umich.edu/baucom-lab/)
+[Lindsay Chaney](http://www.lindsaychaney.com), and [Regina S. Baucom](http://sites.lsa.umich.edu/baucom-lab/)
 
 This repository contains all the code used in the manuscript:
 
+```
 enter citation here
+```
 
-**Abstract:** Soil microbial communities are diverse and have a large impact, both positive and negative, on the host plant. However, the impact of the soil microbial community on a plants evolutionary responses is not well understood. Here we sought to uncover if below-ground microbial communities influence patterns of selection in a plant community. To do this, a common-greenhouse experiment was used where soil microbial community was disrupted by either sterilizing (autoclaving) or sterilizing and re-inoculating with the microbial community from originally collected field soil. We found that a more complex soil microbial community resulted in a larger plant size and higher number of total number of flowers produced. Patterns of selection for flowering day differed based off of soil microbial community, selection more strongly favored earlier flowering when in the complex microbial environment. Further we see differences in correlated selection by soil microbial community. Selection favored faster growth and mid- to early-flowering in simple soil microbial community but medium growth and mid to early flowering in the complex soil microbial community. Together these results suggest the soil microbial community is a selective agent and that soil microbial community influences evolutionary processes.
+**Abstract:** 
+*Plant flowering time plays an important role in plant fitness and thus evolutionary processes. Soil microbial communities are diverse and have a large impact, both positive and negative, on the host plant. However, owing to few available studies, how the soil microbial community may influence the evolutionary response of plant populations is not well understood. Here we sought to uncover if below-ground microbial communities act as an agent of selection on flowering and growth traits in the common morning glory, _Ipomoea purpurea_. 
+*We performed a controlled greenhouse experiment in which genetic lines of _I. purpurea_ were planted into either sterilized soils, or soils that were sterilized and re-inoculated with the microbial community from original field soil. This allowed us to directly test the influence of alterations to the microbial community on plant growth, flowering, and fitness, as well as assess patterns of selection in both soil microbial environments.
+*We found that a more complex soil microbial community resulted in larger plant size and greater number of flowers produced. Selection strongly favored earlier flowering when plants were grown in the complex microbial environment than compared to sterilized soil. Additionally, we uncovered a pattern of negative correlational selection on growth rate and flowering time indicating that selection favored different combinations of growth and flowering traits in the simplified versus complex soil community.  
+*Together these results suggest the soil microbial community is a selective agent on flowering time and ultimately that soil microbial community influences important plant evolutionary processes.
+
+**Key Words**
+phenology, growth, agent of selection, microbiome, soil, *Ipomoea purpurea*
 
 ## Data
 
 Data has been archived for public access at Dryad (link)
+
+_Temporarily the data has be achieved here on GitHub in the data folder_**
 
 To cite this data:
 
@@ -20,7 +31,7 @@ data citation
 
 ## Running
 
-Download zip of the entire repository. This will be the parent folder and your working directly to run the analysis and/or produce the markdown page. Download data files (one .csv file from Dryad) and place into a folder titled `Data` within the parent directory. Remember, you need to set your working 
+Download zip of the entire repository. This will be the parent folder and your working directly to run the analysis and/or produce the markdown page. Download data files (one .csv file from Dryad - file is titled `mg_ghsoil.csv`) and place into a folder titled `Data` within the parent directory. Remember, you need to set your working 
 directory to the location that contains the folders "Data" and "Analysis".
 
 From your R console, source the Do script (`Analysis/04_do.R`), this will perform all analysis.
