@@ -1,8 +1,9 @@
 #==============================================================================================#
-# Script created by Lindsay Chaney 2015 - lchaney@byu.edu
-# Script created in version R 3.2.1 
-# This script is used for the Chaney et al 2016 Morning glory microbe paper
-# This function examines trait differences by genotype, treatment, and their interacitons
+# Script created by Lindsay Chaney 2019 - lindsay.chaney@snow.edu
+# Script created in version R 3.6.1
+# This script is used to LOAD data and packages needed for 
+# Chaney & Buacom 2019 "The soil microbial community alters patterns of 
+#selection on flowering time and fitness related traits in Ipomoea purpurea"
 #==============================================================================================#
 
 #differences in trait by genotype (maternal line), treatment, and interaction
