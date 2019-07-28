@@ -7,6 +7,8 @@
 #==============================================================================================#
 
 #clean data
+  #data set has already been cleaned
+
 #list of focal traits
   samplevars <- c("DOFF", "LeafSum34", "HeightRGRC", "SumFlowers")
   
@@ -18,8 +20,4 @@
     `SumFlowers` = "Total Flowers"
   )
 
-#subset data to only include treatment, genotype, and focal traits
-    svtg <- c("Treatment", "Genotype", "DOFF", "LeafSum34", "HeightRGRC", "SumFlowers")
-    
-mgdat <- mgdat[svtg]
 
