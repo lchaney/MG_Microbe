@@ -40,12 +40,6 @@ This script sources scripts to Load data (`01_Load.R`, including installing and 
 
 Figures generated in R will be saved as `.png` files in a folder called Output.
 
-### Report of R figures and results
-
-To reproduce R figures and results from statistical analysis, a html report is created using markdown (`MG_Microbe.Rmd`).
-
-To run the report in RStudio the “Knit” command (Ctrl+Shift+K) will render the document and display a preview of it.
-
 ## Citation
 
 For archival purposes, the code used to produce figures for publication has been lodged with figshare here (link).
