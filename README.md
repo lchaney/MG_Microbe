@@ -31,7 +31,7 @@ data citation
 
 ## Running
 
-Download zip of the entire repository. This will be the parent folder and your working directly to run the analysis and/or produce the markdown page. Download data files (one .csv file from Dryad - file is titled `mg_ghsoil.csv`) and place into a folder titled `Data` within the parent directory. Remember, you need to set your working 
+Download zip of the entire repository. This will be the parent folder and your working directly to run the analysis and/or produce the markdown page. Download data files (one .csv file from Dryad - file is titled `mgdat.csv`) and place into a folder titled `Data` within the parent directory. Remember, you need to set your working 
 directory to the location that contains the folders "Data" and "Analysis".
 
 From your R console, source the Do script (`Analysis/04_do.R`), this will perform all analysis.
