@@ -1,11 +1,12 @@
 #==============================================================================================#
-# Script created by Lindsay Chaney 2015 - lchaney@byu.edu
-# Script created in version R 3.2.1 
-# This script is used for the Chaney et al 2016 Morning glory microbe paper
-# This function examines selection gradients surface plots by treatment
+# Script created by Lindsay Chaney 2019 - lindsay.chaney@snow.edu
+# Script created in version R 3.6.1
+# This script is used to LOAD data and packages needed for 
+# Chaney & Buacom 2019 "The soil microbial community alters patterns of 
+#selection on flowering time and fitness related traits in Ipomoea purpurea"
 #==============================================================================================#
 
-pal <- wes_palette("Zissou", 100, type = "continuous") #set color pallete
+pal <- wes_palette("Zissou1", 100, type = "continuous") #set color pallete
 
 #inoculum
 xFGi <- cbind(mgdat2i$HeightRGRC, mgdat2i$DOFF)
