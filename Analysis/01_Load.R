@@ -1,8 +1,9 @@
 #==============================================================================================#
-# Script created by Lindsay Chaney 2015 - lchaney@byu.edu
-# Script created in version R 3.2.1 
+# Script created by Lindsay Chaney 2019 - lindsay.chaney@snow.edu
+# Script created in version R 3.6.1
 # This script is used to LOAD data and packages needed for 
-# the Chaney et al 2016 Morning glory microbe paper
+# Chaney & Buacom 2019 "The soil microbial community alters patterns of 
+#selection on flowering time and fitness related traits in Ipomoea purpurea"
 #==============================================================================================#
 
 #load data
@@ -31,3 +32,4 @@
   library(wesanderson) #colors palletes for plots
   library(lattice) #used for surface plots
   library(RColorBrewer) #used for colors of surface plot
+  
