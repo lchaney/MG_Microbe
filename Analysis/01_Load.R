@@ -7,7 +7,7 @@
 #==============================================================================================#
 
 #load data
-  mgdat <- read.csv("Data/mg_ghsoil.csv")
+  mgdat <- read.csv("Data/mgdat.csv")
 
   
 #install the following packages
