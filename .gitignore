@@ -2,6 +2,7 @@
 #Data/*
 Gina/*
 Output/*
+Data/mg_ghsoil*
 
 #Markdown
 *.html
@@ -19,6 +20,8 @@ MG_Microbe_files/*
 
 # RStudio files
 .Rproj.user/
+
+.DS_store
 
 # produced vignettes
 vignettes/*.html
