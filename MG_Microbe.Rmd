@@ -2,7 +2,9 @@
 title: "MG_Microbe"
 author: "Lindsay Chaney"
 date: "August 17, 2015"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ####Pre-Analysis Data Cleaning

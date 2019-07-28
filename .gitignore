@@ -5,6 +5,7 @@ Output/*
 
 #Markdown
 *.html
+MG_Microbe.Rmd
 MG_Microbe_cache/*
 MG_Microbe_files/*
 
