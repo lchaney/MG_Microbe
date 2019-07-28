@@ -1,8 +1,9 @@
 #==============================================================================================#
-# Script created by Lindsay Chaney 2015 - lchaney@byu.edu
-# Script created in version R 3.2.3 
-# This script is used for the Chaney et al 2016 Morning glory microbe paper
-# This function examines selection gradients -- quadratic selection plot by treatment
+# Script created by Lindsay Chaney 2019 - lindsay.chaney@snow.edu
+# Script created in version R 3.6.1
+# This script is used to LOAD data and packages needed for 
+# Chaney & Buacom 2019 "The soil microbial community alters patterns of 
+#selection on flowering time and fitness related traits in Ipomoea purpurea"
 #==============================================================================================#
 
 
@@ -21,7 +22,7 @@ prdi$uci <- errai$fit + 1.96 * errai$se.fit
 doff.quad.Inoculum <- ggplot(data = prdi, aes(x = DOFF, y = fit)) +
   theme_bw() +
   geom_line() +
-  geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest")[2], stat = "identity") +
+  geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest1")[2], stat = "identity") +
   geom_point(data = mgdat2i, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest1")[2]) + 
   scale_x_continuous(limits = c(-3.5, 2.5)) +
   scale_y_continuous(limits = c(0, 3.5)) +
@@ -41,7 +42,7 @@ prdac$uci <- errac$fit + 1.96 * errac$se.fit
 doff.quad.Autoclave <- ggplot(data = prdac, aes(x = DOFF, y = fit)) +
   theme_bw() +
   geom_line() +
-  geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest")[4], stat = "identity") +
+  geom_smooth(aes(ymin = lci, ymax = uci), color = wes_palette("GrandBudapest1")[4], stat = "identity") +
   geom_point(data = mgdat2ac, aes(x = DOFF, y = RelFit), color = wes_palette("GrandBudapest1")[4]) + 
   scale_x_continuous(limits = c(-3.5, 2.5)) +
   scale_y_continuous(limits = c(0, 3.5)) +
