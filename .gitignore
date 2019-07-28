@@ -21,7 +21,7 @@ MG_Microbe_files/*
 # RStudio files
 .Rproj.user/
 
-.DS_store
+.DS_Store
 
 # produced vignettes
 vignettes/*.html
