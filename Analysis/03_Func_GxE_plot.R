@@ -27,16 +27,17 @@ dat.m2 <- mgdat %>%
 
 #boxplot
 gebox <- ggplot(data = dat.m, #use melted data 
-                aes(x=Treatment, y = value, fill = Treatment)) + #variables
+                 aes(x=Treatment, y = value, fill = Treatment)) + #variables
+  labs(x = NULL,  y = "") + #no x or y labels
   geom_boxplot() + #boxplot
   theme_minimal() +#minimal theme
   facet_wrap( ~ variable, #facet wrap
               nrow = 1, scales = "free", #one row for facet wrap
               labeller = as_labeller(var_names), #label names
               strip.position = "bottom") + #facet label on bottom
-  scale_fill_manual(values = wes_palette("GrandBudapest1")) + #color pallete
-  labs(x = NULL,  y = NULL) + #no x or y labels
+  scale_fill_manual(values = wes_palette("GrandBudapest")) + #color pallete
   theme(axis.ticks = element_blank(), #removes x tick labels
         axis.text.x = element_blank(), #removes x tick labels
-        #axis.line.x=element_blank(), #turns off x axis line
-        axis.line = element_line(size = .2)) #adds faint line to axis
+        axis.line.x=element_blank(), #turns off x axis line
+        axis.line = element_line(size = .2), #adds faint line to axis
+        panel.spacing.x=unit(3, "lines")) #adds larger spaces between plots so I can add y axis legend in photoshop
