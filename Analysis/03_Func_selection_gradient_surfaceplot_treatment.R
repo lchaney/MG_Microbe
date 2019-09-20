@@ -6,7 +6,7 @@
 #selection on flowering time and fitness related traits in Ipomoea purpurea"
 #==============================================================================================#
 
-pal <- wes_palette("Zissou1", 100, type = "continuous") #set color pallete
+pal <- wes_palette("Zissou", 100, type = "continuous") #set color pallete
 
 #inoculum
 xFGi <- cbind(mgdat2i$HeightRGRC, mgdat2i$DOFF)
